@@ -1,566 +1,335 @@
 # EcoArchaeoSwarm
  
 ## AI-Driven Swarm Robotics for Ecological Restoration in Archaeologically Sensitive Landscapes
-
-Project Author
-
-Kian Esmaeili
-
+ 
+EcoArchaeoSwarm is an independent engineering project exploring the integration of Swarm Robotics, Embedded Systems, Artificial Intelligence, and ecological restoration for environmentally degraded landscapes that also contain archaeological or heritage constraints.
+ 
+The system is designed around a swarm of small autonomous robots that collaboratively observe environmental conditions, identify restoration opportunities, prioritize tasks, allocate resources, and assist ecological restoration while respecting protected archaeological areas.
+ 
+## Project Author
+ 
+**Kian Esmaeili**
+ 
 Mechatronics Engineering
+ 
 Embedded Systems • Robotics • Artificial Intelligence
+ 
+## The Problem
+ 
+Ecological degradation and desertification can create large areas where restoration requires continuous environmental monitoring, localized intervention, and efficient use of limited resources such as water and native seeds.
+ 
+In archaeologically sensitive landscapes, restoration operations introduce an additional constraint: robotic systems must avoid protected areas and minimize potentially damaging physical intervention.
+ 
+This creates a multi-objective engineering problem involving:
+ 
+- Environmental monitoring
+- Restoration prioritization
+- Resource allocation
+- Multi-robot coordination
+- Autonomous navigation
+- Protected-zone constraints
+- Embedded systems
+- Human supervision
 
  
-A multidisciplinary engineering project combining Artificial Intelligence, Swarm Robotics, Embedded Systems, Mechatronics, Ecological Restoration, and Archaeological Landscape Protection.
+## Core Research Question
  
-***
+How can a swarm of low-cost autonomous robots collaboratively map degraded environmental conditions, identify restoration opportunities, allocate limited resources, and assist ecological recovery while respecting archaeological protection constraints?
  
-## 🌱 The Problem
+## System Concept
  
-Large degraded and dry landscapes are difficult to monitor and restore efficiently.
- 
-Environmental conditions can vary significantly across a relatively small area, while resources such as water, seeds, battery energy, and human access are limited.
- 
-The problem becomes more challenging when degraded landscapes overlap with archaeologically sensitive areas, where conventional machinery or uncontrolled physical intervention may create a risk of damage.
- 
-EcoArchaeoSwarm explores how a swarm of small autonomous robots can collaboratively monitor environmental conditions, identify restoration opportunities, allocate limited resources, and assist low-impact ecological interventions while respecting protected archaeological areas.
- 
-***
- 
-## 🤖 The Core Idea
- 
-Instead of relying on one large autonomous machine, EcoArchaeoSwarm uses multiple small robots that collaborate through shared environmental information.
- 
-Each robot observes its local surroundings and contributes data to a shared representation of the environment.
- 
-An AI-driven planning layer evaluates the collected information and helps determine:
- 
-- Which areas should receive attention first
-- Which robot should perform each task
-- How limited resources should be allocated
-- Which areas must be avoided
-- How the system should adapt after an intervention
-
- 
-### Core Decision Loop
+The proposed system follows an iterative decision loop:
  
 **Observe → Analyze → Prioritize → Allocate → Act → Monitor → Adapt**
  
-***
+Each robot contributes local observations to a shared environmental representation.
  
-## 🧠 AI Agent
+The swarm then uses these observations to determine which locations require attention and which robot should perform each task.
  
-The AI Agent is not intended to be a generic chatbot.
+## AI Agent
  
-It acts as a decision-support and planning layer between environmental data and the robot swarm.
+The AI component is not designed as a generic conversational chatbot.
  
-### Environmental Assessment
+The proposed AI Agent acts as a decision-support and planning layer.
  
-Analyzing sensor and visual information to estimate environmental conditions.
+Its responsibilities include:
  
-### Restoration Prioritization
+- Environmental assessment
+- Restoration priority estimation
+- Task generation
+- Task prioritization
+- Resource allocation
+- Swarm task assignment
+- Constraint handling
+- Restoration outcome evaluation
+
  
-Identifying areas where intervention may have a higher expected value.
+The initial prototype combines deterministic engineering rules with optimization-oriented logic. Machine learning components can be introduced as the available experimental data increases.
  
-### Resource Allocation
+## Swarm Robotics
  
-Allocating limited resources such as water, seeds, energy, and time.
+The system is designed around multiple cooperating robots rather than a single autonomous platform.
  
-### Task Allocation
+Each robot can have:
  
-Determining which robot should perform which task based on position, battery state, available payloads, and environmental conditions.
+- Position
+- Battery state
+- Environmental observations
+- Current task
+- Available payload
+- Operational state
+
  
-### Constraint Handling
+The swarm maintains a shared representation of the environment and dynamically assigns tasks according to robot state, task priority, location, and environmental constraints.
  
-Ensuring that protected archaeological zones and other operational constraints are respected.
+The initial simulation uses three robots and can later scale to larger robot populations.
  
-### Outcome Evaluation
+## Archaeological Protection
  
-Comparing environmental conditions before and after interventions and using the results to improve subsequent decisions.
+Archaeological and heritage constraints are treated as a functional part of the system architecture.
  
-The initial MVP will favor explainable rules and optimization techniques, with Machine Learning introduced where it provides a measurable advantage.
+The environment can contain:
  
-***
- 
-## 🐝 Swarm Robotics
- 
-The swarm is not simply a collection of independent robots.
- 
-Robots share observations and operate toward a common objective.
- 
-For example:
- 
-```text
-Robot A
-   │
-   ├── detects low soil moisture
-   │
-   ▼
-Shared Map
-   │
-   ▼
-AI / Planning Layer
-   │
-   ├── evaluates priority
-   ├── checks protected zones
-   └── evaluates robot capabilities
-   │
-   ▼
-Task Allocation
-   │
-   ├── Robot B → detailed sensing
-   │
-   └── Robot C → intervention
-```
- 
-This allows the swarm to dynamically adapt to changing environmental conditions and robot states.
- 
-***
- 
-## 🏺 Archaeological Protection
- 
-Archaeology is treated as an operational constraint rather than a decorative feature.
- 
-The environment can be divided into three operational zones.
- 
-### Protected Zone
+**Protected Zone**
  
 No robot entry or intervention.
  
-### Buffer Zone
+**Buffer Zone**
  
-Additional restrictions on distance, speed, or intervention type.
+Additional navigation and intervention restrictions.
  
-### Restoration Zone
+**Restoration Zone**
  
-Area where approved ecological operations can take place.
+Area where ecological operations may be permitted.
  
-These constraints can directly affect:
+This allows the planning system to treat heritage protection as an explicit constraint rather than as an external consideration.
  
-- Navigation
-- Path Planning
-- Task Allocation
-- Robot Speed
-- Intervention Type
+## Ecological Restoration
+ 
+The long-term concept focuses on targeted ecological assistance rather than broad environmental manipulation.
+ 
+Potential interventions include:
+ 
+- Localized micro-watering
+- Controlled placement of native seeds
+- Environmental sensing
+- Restoration-site assessment
+- Repeated monitoring
+- Recovery evaluation
 
  
-The initial prototype will simulate these zones before integration with real geographic or heritage datasets.
+Species selection, restoration methods, and ecological thresholds should ultimately be defined using ecological expertise and site-specific environmental data.
  
-***
+## Robot Platform
  
-## 🔧 Robot Platform
+The intended physical platform is a small mobile rover based on an embedded controller such as an ESP32-class microcontroller.
  
-The initial robot platform is designed around low-cost and modular hardware.
+Potential hardware includes:
  
-### Potential Components
- 
-- ESP32-class controller
 - Differential-drive chassis
-- Motor drivers
-- Soil moisture sensor
-- Temperature / humidity sensor
+- Embedded controller
+- Soil-moisture sensor
+- Temperature and humidity sensor
 - Light sensor
 - IMU
 - Camera
 - Wireless communication
-- Rechargeable battery
-- Modular ecological payload
+- Battery system
+- Modular restoration payload
 
  
-### Monitoring Payload
+The modular payload concept allows different robots to carry different capabilities while participating in the same swarm.
  
-Environmental and visual sensing.
+## MVP
  
-### Seed Dispensing Payload
+The initial Minimum Viable Product focuses on proving the system architecture before building a complete field robot.
  
-Controlled placement of native seeds in suitable locations.
+The MVP includes:
  
-### Micro-Watering Payload
- 
-Localized water delivery rather than broad-area irrigation.
- 
-The modular approach allows different robots to carry different capabilities, making payload availability part of the swarm's task-allocation problem.
- 
-***
- 
-## 🚀 MVP
- 
-The first prototype will focus on proving the system architecture rather than attempting full-scale ecological restoration.
- 
-### MVP Components
- 
-- 2–3 small rover robots
-- ESP32-based controllers
-- Environmental sensors
-- Camera sensing
-- Wireless communication
-- Shared grid-based map
-- Swarm task allocation
-- Protected / No-Go zones
-- One modular ecological payload
-- Monitoring dashboard
-
- 
-### Initial Testbed
- 
-The initial system can be tested inside a controlled environment containing:
- 
-- Different environmental conditions
-- Degraded zones
-- Restoration-priority zones
+- Simulated environmental grid
+- Environmental zones
+- Multiple robots
+- Robot state
+- Battery state
+- Environmental sensing simulation
+- Restoration task generation
+- Task prioritization
+- Task allocation
 - Protected archaeological zones
-- Limited resources
+- Basic robot navigation
+- Human-supervised operation
 
  
-The Testbed will allow the system to be evaluated before deployment in a real outdoor environment.
+## Current Prototype
  
-***
+The repository currently contains a Python-based simulation prototype.
  
-## 🗺️ Development Roadmap
+The simulation demonstrates the initial computational architecture of the project:
  
-### Phase 1 — Simulation
+**Environment → Robots → Sensors → Tasks → Priorities → Task Allocation → Robot Actions**
  
-Build a grid-based environment containing multiple robot agents, environmental conditions, resources, and protected zones.
+The prototype is intentionally lightweight so that the swarm logic can be validated before introducing physical hardware and more complex AI models.
  
-↓
+## Development Roadmap
  
-### Phase 2 — Single Robot
+### Phase 1 — Computational Prototype
  
-Build the first rover and implement environmental sensing, motor control, and basic navigation.
- 
-↓
- 
-### Phase 3 — Multi-Robot Communication
- 
-Add multiple robots and establish communication and shared environmental observations.
- 
-↓
- 
-### Phase 4 — Swarm Planning
- 
-Implement shared mapping, task allocation, resource constraints, and protected-zone avoidance.
- 
-↓
- 
-### Phase 5 — AI Agent
- 
-Add environmental assessment, restoration prioritization, resource allocation, and intelligent planning.
- 
-↓
- 
-### Phase 6 — Ecological Intervention
- 
-Add a controlled Seed Dispensing or Micro-Watering module.
- 
-↓
- 
-### Phase 7 — Outcome Evaluation
- 
-Measure environmental changes before and after intervention and feed the results back into the planning system.
- 
-↓
- 
-### Phase 8 — Heritage Layer
- 
-Integrate protected zones, buffer zones, heritage constraints, and more realistic archaeological-landscape scenarios.
- 
-***
- 
-## ⚙️ Technology Domains
- 
-### Artificial Intelligence
- 
-Environmental analysis, decision support, optimization, and adaptive planning.
- 
-### Swarm Robotics
- 
-Multi-agent coordination, communication, distributed observations, and task allocation.
- 
-### Embedded Systems
- 
-Real-time sensing, motor control, communication, power management, and robot firmware.
- 
-### Mechatronics
- 
-Robot mechanics, electronics, actuators, sensors, mobility, and modular payload mechanisms.
- 
-### Ecological Restoration
- 
-Targeted and resource-aware assistance for vegetation recovery.
- 
-### Archaeological Protection
- 
-Operational constraints for sensitive landscapes and heritage areas.
- 
-***
- 
-## 📊 Project Status
- 
-🟡 **Concept & System Architecture**
- 
-The project is currently being developed from concept toward a simulation-based MVP.
- 
-### Current Focus
- 
-- System architecture
-- Swarm behavior
-- AI Agent definition
-- MVP design
-- Robot platform design
-- Simulation planning
+- Environmental grid
+- Protected zones
+- Restoration zones
+- Degraded areas
+- Robot agents
+- Robot movement
+- Environmental sensing
+- Task generation
+- Task prioritization
+- Task allocation
 
  
-### Development Strategy
+### Phase 2 — Swarm Simulation
  
-**Simulation → Embedded Prototype → Multi-Robot System → AI Planning → Field-Oriented Prototype**
+- Shared environmental map
+- Multi-agent coordination
+- Communication model
+- Dynamic task reassignment
+- Battery-aware planning
+- Collision avoidance
+- Failure handling
+
  
-***
+### Phase 3 — AI Planning Layer
  
-## 📁 Repository Structure
+- Environmental classification
+- Restoration priority prediction
+- Resource allocation
+- Constraint-aware planning
+- Explainable task recommendations
+- Time-series restoration evaluation
+
+ 
+### Phase 4 — Physical Robot
+ 
+- Small mobile rover
+- Embedded controller
+- Environmental sensors
+- Wireless communication
+- Camera
+- Battery monitoring
+- Hardware-in-the-loop testing
+
+ 
+### Phase 5 — Ecological Intervention
+ 
+- Modular seed dispenser
+- Localized micro-watering
+- Controlled intervention experiments
+- Before/after environmental measurements
+
+ 
+### Phase 6 — Heritage-Aware Field Scenario
+ 
+- GIS-based protected zones
+- Heritage data integration
+- Buffer constraints
+- Site-specific navigation rules
+- Human approval workflow
+
+ 
+## Technology Domains
+ 
+**Embedded Systems**
+ 
+Microcontrollers, sensors, motor control, communication, power management.
+ 
+**Robotics**
+ 
+Mobile robots, navigation, multi-agent coordination, task allocation.
+ 
+**Artificial Intelligence**
+ 
+Environmental analysis, optimization, decision support, planning, and learning.
+ 
+**Ecological Restoration**
+ 
+Environmental monitoring, degraded-land assessment, targeted restoration assistance.
+ 
+**Heritage Protection**
+ 
+Spatial constraints, protected zones, non-destructive operation, human oversight.
+ 
+## Safety and Human Oversight
+ 
+EcoArchaeoSwarm is intended as a research and engineering prototype.
+ 
+The system is not intended to autonomously determine ecological policy or perform unrestricted environmental intervention.
+ 
+Real-world deployment would require:
+ 
+- Ecological expertise
+- Heritage/archaeological expertise
+- Site-specific environmental data
+- Operational safety constraints
+- Human approval
+- Field validation
+
+ 
+The AI system should provide recommendations and coordinated actions within explicitly defined constraints.
+ 
+## Evaluation
+ 
+The project will evaluate the system using measurable engineering criteria including:
+ 
+- Task completion rate
+- Navigation success
+- Protected-zone violations
+- Energy consumption
+- Task allocation efficiency
+- Environmental measurement coverage
+- Restoration-priority accuracy
+- Robot failure recovery
+- Scalability with increasing robot count
+
+ 
+## Research Direction
+ 
+The project explores a broader question:
+ 
+Can decentralized robotic systems provide a scalable engineering framework for environmental restoration in complex landscapes where ecological objectives and heritage protection constraints must coexist?
+ 
+The current repository represents the initial computational foundation for investigating this question.
+ 
+## Project Status
+ 
+**Current Stage: Simulation Prototype**
+ 
+The initial environment, robot model, navigation constraints, environmental sensing model, restoration task generation, task prioritization, and multi-robot task allocation are implemented as a Python prototype.
+ 
+The next development stage is to expand the simulation into a more realistic swarm environment and connect the computational model to an embedded robotic platform.
+ 
+## Repository Structure
  
 ```text
 EcoArchaeoSwarm/
 │
 ├── README.md
+├── LICENSE
+├── .gitignore
 │
 ├── docs/
 │   ├── problem-definition.md
 │   ├── system-architecture.md
-│   ├── ai-agent.md
 │   └── mvp.md
 │
-├── hardware/
-│   ├── robot-design/
-│   ├── electronics/
-│   └── sensors/
-│
-├── firmware/
-│
-├── swarm/
-│
-├── ai/
-│
-├── simulation/
-│
-├── dashboard/
-│
-└── prototypes/
+└── simulation/
+    └── main.py
 ```
  
-***
+## Core Principle
  
-## 📂 Documentation
+The project follows one central engineering principle:
  
-The project documentation will be developed progressively as the system evolves.
+**Use autonomous systems to assist ecological restoration while making environmental and archaeological constraints explicit parts of the decision-making process.**
  
-### Problem Definition
+## License
  
-The formal definition of the environmental, robotic, and archaeological constraints.
- 
-### System Architecture
- 
-The relationship between the environmental layer, robot layer, swarm layer, AI layer, and expert constraints.
- 
-### AI Agent
- 
-The architecture and decision-making responsibilities of the AI planning layer.
- 
-### MVP
- 
-The minimum hardware and software system required to demonstrate the core concept.
- 
-***
- 
-## 🧪 Experimental Strategy
- 
-The project will follow an incremental validation strategy.
- 
-### Stage 1 — Simulation
- 
-Test swarm coordination, task allocation, resource constraints, and protected zones without physical hardware.
- 
-### Stage 2 — Hardware-in-the-Loop
- 
-Connect real Embedded hardware to the simulation environment.
- 
-### Stage 3 — Controlled Physical Testbed
- 
-Deploy multiple small robots in a controlled environment.
- 
-### Stage 4 — Outdoor Prototype
- 
-Test environmental sensing and navigation in a small outdoor area.
- 
-### Stage 5 — Ecological Demonstration
- 
-Evaluate controlled and expert-supervised intervention scenarios.
- 
-This approach reduces development risk and allows individual system components to be validated before full integration.
- 
-***
- 
-## 🎯 MVP Success Criteria
- 
-The MVP will be evaluated using measurable technical criteria.
- 
-### Swarm Coordination
- 
-Multiple robots should be able to share observations and coordinate tasks.
- 
-### Environmental Mapping
- 
-The system should create and update a shared representation of the test environment.
- 
-### Task Allocation
- 
-Tasks should be assigned according to robot position, battery state, current workload, and available payloads.
- 
-### Protected-Zone Compliance
- 
-Robots should avoid entering defined Protected Zones during navigation and task execution.
- 
-### Resource Awareness
- 
-The system should account for limited water, seeds, battery energy, and time when planning operations.
- 
-### Adaptive Planning
- 
-The system should be able to modify subsequent tasks after receiving new environmental observations.
- 
-### Intervention Evaluation
- 
-The system should record and compare environmental conditions before and after an intervention.
- 
-***
- 
-## 🌍 Long-Term Vision
- 
-EcoArchaeoSwarm is intended to evolve from a small experimental swarm into a modular robotic platform capable of supporting environmental monitoring and targeted ecological restoration in complex landscapes.
- 
-The long-term objective is not to replace environmental or archaeological experts.
- 
-Instead, the system aims to provide them with a scalable robotic tool capable of:
- 
-- Collecting distributed environmental data
-- Identifying areas requiring attention
-- Allocating limited resources
-- Respecting protected areas
-- Executing carefully constrained interventions
-- Evaluating environmental changes over time
-- Supporting expert decision-making
-
- 
-***
- 
-## 🔬 Research Directions
- 
-As the project develops, several research directions can be explored:
- 
-- Multi-Agent Task Allocation
-- Swarm Intelligence
-- Multi-Robot Path Planning
-- Computer Vision for Vegetation Assessment
-- Environmental Mapping
-- Resource-Constrained Optimization
-- Reinforcement Learning
-- Distributed Decision-Making
-- Edge AI
-- Embedded Machine Learning
-- Human-in-the-Loop Robotics
-- GIS Integration
-- Heritage-Aware Navigation
-
- 
-These areas can be introduced incrementally depending on the requirements of the prototype.
- 
-***
- 
-## 🛡️ Safety and Human Oversight
- 
-EcoArchaeoSwarm is designed as a human-supervised system.
- 
-Environmental and archaeological experts remain responsible for defining acceptable intervention areas, ecological constraints, protected areas, and operational rules.
- 
-The AI Agent operates within these constraints rather than independently overriding them.
- 
-This Human-in-the-Loop approach is especially important when operating in environmentally or culturally sensitive landscapes.
- 
-***
- 
-## 🧩 Design Principles
- 
-The project follows several core engineering principles:
- 
-**Modularity**
- 
-Hardware and software components should be replaceable and independently testable.
- 
-**Scalability**
- 
-The system should work with a small number of robots while allowing additional units to be added later.
- 
-**Explainability**
- 
-Important planning decisions should be understandable and traceable.
- 
-**Resource Awareness**
- 
-Water, seeds, energy, time, and robot availability are treated as limited resources.
- 
-**Constraint Awareness**
- 
-Environmental and archaeological restrictions must be part of the planning process.
- 
-**Incremental Development**
- 
-The system should evolve from simulation to hardware rather than attempting the complete system at once.
- 
-***
- 
-## 📌 Current Project Scope
- 
-The initial project does not attempt to solve complete ecosystem restoration.
- 
-Instead, the MVP focuses on demonstrating the following chain:
- 
-**Environmental Observation**
- 
-↓
- 
-**Shared Mapping**
- 
-↓
- 
-**AI-Assisted Assessment**
- 
-↓
- 
-**Restoration Prioritization**
- 
-↓
- 
-**Swarm Task Allocation**
- 
-↓
- 
-**Constrained Robot Action**
- 
-↓
- 
-**Outcome Monitoring**
- 
-This provides a realistic and measurable foundation for future development.
- 
-***
- 
-## 🎯 Core Principle
- 
-> **Small robots. Shared intelligence. Limited resources. Protected landscapes.**
-
- 
-EcoArchaeoSwarm explores how these constraints can be brought together into one autonomous engineering system.
- 
-***
- 
-## 📜 License
- 
-License information will be added as the project moves from prototype development toward public release.
+This project is released under the MIT License.
