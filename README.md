@@ -1,6 +1,14 @@
 # EcoArchaeoSwarm
  
 ## AI-Driven Swarm Robotics for Ecological Restoration in Archaeologically Sensitive Landscapes
+
+Project Author
+
+Kian Esmaeili
+
+Mechatronics Engineering
+Embedded Systems • Robotics • Artificial Intelligence
+
  
 A multidisciplinary engineering project combining Artificial Intelligence, Swarm Robotics, Embedded Systems, Mechatronics, Ecological Restoration, and Archaeological Landscape Protection.
  
